@@ -1133,7 +1133,9 @@ body {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+    .module-card {
+        width: 90%;
+    }
     .module-card-header {
         height: 180px;
     }
