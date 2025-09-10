@@ -3,7 +3,7 @@
     {
       "title": "JavaScript Core Concepts",
       "name": "JS Core",
-      "page_html": "./js-core-concept/index.html",
+      "page_html": "./js/js-core-concept/index.html",
       "summary": "Master the fundamental concepts of JavaScript including data types, variables, scope, and basic programming constructs."
     },
     {
@@ -21,7 +21,7 @@
     {
       "title": "JavaScript Objects",
       "name": "Objects",
-      "page_html": "./js/object/index.html",
+      "page_html": "./js/js/object/index.html",
       "summary": "Master object creation, manipulation, destructuring, and advanced object-oriented patterns."
     },
     {
@@ -33,7 +33,7 @@
     {
       "title": "DOM Manipulation",
       "name": "DOM",
-      "page_html": "./dom/index.html",
+      "page_html": "./js/dom/index.html",
       "summary": "Master Document Object Model manipulation, element selection, styling, and dynamic content creation."
     },
     {
@@ -87,7 +87,7 @@
     {
       "title": "Regular Expressions",
       "name": "RegEx",
-      "page_html": "./regex/index.html",
+      "page_html": "./js/regex/index.html",
       "summary": "Master pattern matching, text validation, and string manipulation with regular expressions."
     },
     {
@@ -275,7 +275,7 @@
     {
       "title": "React Server Components",
       "name": "Server Components",
-      "page_html": "./react/react-server-components/index.html",
+      "page_html": "./react/react-suspensereact-suspense/index.html",
       "summary": "Master React Server Components, server-side rendering, and modern React architecture patterns."
     },
     {

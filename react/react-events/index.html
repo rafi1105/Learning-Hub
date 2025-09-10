@@ -887,7 +887,7 @@
           Table of Contents
         </div>
         <ul class="nav-list" id="navList">
-          <!-- Navigation will be dynamically generated from Components.md -->
+          <!-- Navigation will be dynamically generated from Events.markdown -->
           <li class="nav-item">
             <div class="nav-loading">
               <i class="fas fa-spinner fa-spin"></i>
@@ -1213,7 +1213,7 @@
     // Load and Parse Markdown
     async function loadMarkdown() {
       try {
-        const response = await fetch("Components.md");
+        const response = await fetch("Events.markdown");
         if (!response.ok) throw new Error('Failed to fetch markdown file');
         
         const text = await response.text();
@@ -1304,7 +1304,7 @@
           <div style="text-align: center; padding: 3rem;">
             <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--danger-color); margin-bottom: 2rem;"></i>
             <h2>Failed to Load Content</h2>
-            <p style="margin-bottom: 1rem;">Could not load the Components.md file.</p>
+            <p style="margin-bottom: 1rem;">Could not load the Events.markdown file.</p>
             <p style="color: var(--text-muted);">Error: ${error.message}</p>
             <p style="color: var(--text-muted);">Make sure the file exists in the same directory.</p>
           </div>

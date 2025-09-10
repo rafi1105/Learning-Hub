@@ -13,24 +13,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      /* Dark theme colors - React-friendly palette */
-      --primary-bg: #0d1117;
-      --secondary-bg: #161b22;
-      --card-bg: #21262d;
-      --accent-bg: #30363d;
-      --text-primary: #f0f6fc;
-      --text-secondary: #e6edf3;
-      --text-muted: #7d8590;
-      --accent-color: #20d2fffd;
-      --accent-hover: #53c8ff;
-      --border-color: #31d6ff;
-      --success-color: #238636;
-      --warning-color: #fffffffd;
-      --danger-color: #f85149;
-      --gradient: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
-      --shadow: 0 8px 24px rgba(1, 4, 9, 0.15);
-      --glow: 0 0 20px rgba(88, 166, 255, 0.15);
-      --logo-color: #3effff;
+      /* Dark theme colors */
+      --primary-bg: #1a1d29;
+      --secondary-bg: #252836;
+      --card-bg: #2d3142;
+      --accent-bg: #343851;
+      --text-primary: #ffffff;
+      --text-secondary: #f8f7eb;
+      --text-muted: #64748b;
+      --accent-color: #FFD43B;
+      --accent-hover: #00b894;
+      --border-color: #3d4663;
+      --success-color: #10b981;
+      --warning-color: #FFD43B;
+      --danger-color: #ef4444;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      --glow: 0 0 20px rgba(221, 183, 12, 0.3);
     }
 
     /* Light theme colors */
@@ -42,16 +41,15 @@
       --text-primary: #1e293b;
       --text-secondary: #475569;
       --text-muted: #64748b;
-      --accent-color: #1061cc;
+      --accent-color: #0ea5e9;
       --accent-hover: #0284c7;
-      --border-color: #cfdefc;
+      --border-color: #e2e8f0;
       --success-color: #059669;
       --warning-color: #0284c7;
       --danger-color: #dc2626;
       --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
       --glow: 0 0 20px rgba(14, 165, 233, 0.2);
-      --logo-color: #0ea5e9;
     }
 
     * {
@@ -72,8 +70,7 @@
     .floating-header {
       position: fixed;
       top: 12px;
-      right: 12%;
-      margin: 1px auto;
+      right: 10.5%;
       transform: translateX(50%);
       background: var(--card-bg);
       backdrop-filter: blur(20px);
@@ -91,7 +88,7 @@
     .logo {
       font-size: 1.2rem;
       font-weight: 700;
-      color: var(--logo-color);
+      color: #FFD43B;
     }
 
     .light-theme .logo {
@@ -119,7 +116,7 @@
 
     .theme-option.active {
       background: var(--accent-color);
-      color: var(--primary-bg);
+      color: rgb(0, 0, 0);
       box-shadow: var(--glow);
     }
 
@@ -238,7 +235,7 @@
 
     .nav-link.active {
       background: var(--accent-color);
-      color: var(--primary-bg);
+      color: rgb(12, 12, 12);
       box-shadow: var(--glow);
     }
 
@@ -268,15 +265,12 @@
     h1 {
       font-size: 3rem;
       font-weight: 800;
-      color: white;
+      background: var(--warning-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
       line-height: 1.1;
       text-align: center;
-      background: var(--accent-color);
-      border-radius: 100px;
-      padding: 10px 10px;
-      width: 80%;
-      margin: 0  auto;
     }
 
     h2 {
@@ -379,7 +373,7 @@
 
     pre {
       margin: 0;
-      padding: 0px;
+      padding: 24px;
       background: var(--primary-bg) !important;
       font-family: 'JetBrains Mono', 'Fira Code', monospace;
       font-size: 1.2rem;
@@ -393,12 +387,8 @@
       padding: 3px 6px;
       border-radius: 6px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: .95em;
+      font-size: .85em;
       color: var(--accent-color);
-      white-space: pre-wrap;
-      word-break: break-word;
-      overflow-wrap: break-word;
-     
     }
 
     /* Output Area */
@@ -463,6 +453,7 @@
 
     .progress-ring__background {
       fill: none;
+      stroke: var(--border-color);
       stroke-width: 3;
     }
 
@@ -539,7 +530,6 @@
 
     .nav-link.active .nav-number {
       color: inherit;
-      color: var(--primary-bg);
     }
 
     /* Scroll hints for navigation */
@@ -563,7 +553,6 @@
     .nav-list {
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
-      
     }
 
     /* Navigation fade effects */
@@ -864,8 +853,8 @@
   <!-- Floating Header -->
   <header class="floating-header">
     <div class="logo">
-      <i class="fa-brands fa-react fa-lg" style="color: var(--logo-color); margin: 0 8px;"></i>
-      React Guide
+      <i class="fa-brands fa-js fa-lg" style="color: var(--accent-color);"></i>
+      JS  Guide
     </div>
     <div class="theme-switcher" id="themeSwitcher">
       <div class="theme-option active" data-theme="dark">
@@ -887,7 +876,7 @@
           Table of Contents
         </div>
         <ul class="nav-list" id="navList">
-          <!-- Navigation will be dynamically generated from Components.md -->
+          <!-- Navigation will be dynamically generated from JS Core.md -->
           <li class="nav-item">
             <div class="nav-loading">
               <i class="fas fa-spinner fa-spin"></i>
@@ -1213,7 +1202,7 @@
     // Load and Parse Markdown
     async function loadMarkdown() {
       try {
-        const response = await fetch("Components.md");
+        const response = await fetch("JS Core.md");
         if (!response.ok) throw new Error('Failed to fetch markdown file');
         
         const text = await response.text();
@@ -1275,7 +1264,7 @@
         // Make code blocks interactive
         document.querySelectorAll('pre').forEach(pre => {
           const code = pre.querySelector('code');
-          if (code && (code.classList.contains('language-javascript') || code.classList.contains('language-jsx') || code.classList.contains('language-react'))) {
+          if (code && code.classList.contains('language-javascript')) {
             createInteractiveCodeBlock(pre);
           }
         });
@@ -1304,7 +1293,7 @@
           <div style="text-align: center; padding: 3rem;">
             <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--danger-color); margin-bottom: 2rem;"></i>
             <h2>Failed to Load Content</h2>
-            <p style="margin-bottom: 1rem;">Could not load the Components.md file.</p>
+            <p style="margin-bottom: 1rem;">Could not load the readme.md file.</p>
             <p style="color: var(--text-muted);">Error: ${error.message}</p>
             <p style="color: var(--text-muted);">Make sure the file exists in the same directory.</p>
           </div>
