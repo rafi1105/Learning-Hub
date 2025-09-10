@@ -9,25 +9,25 @@
     {
       "title": "JavaScript Arrays",
       "name": "Arrays",
-      "page_html": "./array/index.html",
+      "page_html": "./js/array/index.html",
       "summary": "Learn array methods, manipulation techniques, and advanced array operations for data processing."
     },
     {
       "title": "JavaScript Functions",
       "name": "Functions",
-      "page_html": "./function/index.html",
+      "page_html": "./js/function/index.html",
       "summary": "Understand function declarations, expressions, arrow functions, closures, and advanced function concepts."
     },
     {
       "title": "JavaScript Objects",
       "name": "Objects",
-      "page_html": "./object/index.html",
+      "page_html": "./js/object/index.html",
       "summary": "Master object creation, manipulation, destructuring, and advanced object-oriented patterns."
     },
     {
       "title": "JavaScript Loops",
       "name": "Loops",
-      "page_html": "./loop/index.html",
+      "page_html": "./js/loop/index.html",
       "summary": "Learn all types of loops: for, while, do-while, for-in, for-of, and advanced iteration techniques."
     },
     {
@@ -39,49 +39,49 @@
     {
       "title": "Event Handling",
       "name": "Events",
-      "page_html": "./Event/index.html",
+      "page_html": "./js/Event/index.html",
       "summary": "Learn event listeners, event propagation, delegation, and creating interactive web applications."
     },
     {
       "title": "JavaScript Promises",
       "name": "Promises",
-      "page_html": "../promise/index.html",
+      "page_html": "./js/promise/index.html",
       "summary": "Master asynchronous JavaScript with Promises, async/await, and advanced asynchronous patterns."
     },
     {
       "title": "Object-Oriented Programming",
       "name": "OOP",
-      "page_html": "./oop/index.html",
+      "page_html": "./js/oop/index.html",
       "summary": "Learn classes, inheritance, encapsulation, polymorphism, and modern OOP patterns in JavaScript."
     },
     {
       "title": "Higher-Order Functions",
       "name": "HOF",
-      "page_html": "./call_function/index.html",
+      "page_html": "./js/call_function/index.html",
       "summary": "Master map, filter, reduce, and other higher-order functions for functional programming."
     },
     {
       "title": "API Integration",
       "name": "API",
-      "page_html": "./api/index.html",
+      "page_html": "./js/api/index.html",
       "summary": "Learn to work with REST APIs, fetch data, handle responses, and build API-driven applications."
     },
     {
       "title": "JavaScript Features",
       "name": "Features",
-      "page_html": "./freaturs/index.html",
+      "page_html": "./js/freaturs/index.html",
       "summary": "Explore advanced JavaScript features, modern syntax, and cutting-edge development techniques."
     },
     {
       "title": "ES6+ Modern JavaScript",
       "name": "ES6+",
-      "page_html": "./modern-js/index.html",
+      "page_html": "./js/modern-js/index.html",
       "summary": "Master modern JavaScript features: destructuring, spread operator, template literals, modules, and more."
     },
     {
       "title": "Error Handling",
       "name": "Error Handling",
-      "page_html": "./error-handling/index.html",
+      "page_html": "./js/error-handling/index.html",
       "summary": "Learn try-catch blocks, error types, debugging techniques, and building robust applications."
     },
     {
@@ -93,61 +93,61 @@
     {
       "title": "Local Storage & Session",
       "name": "Storage",
-      "page_html": "./storage/index.html",
+      "page_html": "./js/storage/index.html",
       "summary": "Learn browser storage options: localStorage, sessionStorage, cookies, and IndexedDB."
     },
     {
       "title": "Form Validation",
       "name": "Forms",
-      "page_html": "./forms/index.html",
+      "page_html": "./js/forms/index.html",
       "summary": "Master form handling, validation techniques, and creating user-friendly input experiences."
     },
     {
       "title": "AJAX & Fetch API",
       "name": "AJAX",
-      "page_html": "./ajax/index.html",
+      "page_html": "./js/ajax/index.html",
       "summary": "Learn asynchronous communication, XMLHttpRequest, Fetch API, and handling server responses."
     },
     {
       "title": "JSON Handling",
       "name": "JSON",
-      "page_html": "./json/index.html",
+      "page_html": "./js/json/index.html",
       "summary": "Master JSON parsing, stringifying, and working with structured data formats."
     },
     {
       "title": "Modules & Imports",
       "name": "Modules",
-      "page_html": "./modules/index.html",
+      "page_html": "./js/modules/index.html",
       "summary": "Learn ES6 modules, import/export syntax, and building modular JavaScript applications."
     },
     {
       "title": "Testing & Debugging",
       "name": "Testing",
-      "page_html": "./testing/index.html",
+      "page_html": "./js/testing/index.html",
       "summary": "Master debugging tools, unit testing, integration testing, and quality assurance techniques."
     },
     {
       "title": "Performance Optimization",
       "name": "Performance",
-      "page_html": "./performance/index.html",
+      "page_html": "./js/performance/index.html",
       "summary": "Learn optimization techniques, memory management, and building high-performance JavaScript applications."
     },
     {
       "title": "Design Patterns",
       "name": "Patterns",
-      "page_html": "./patterns/index.html",
+      "page_html": "./js/patterns/index.html",
       "summary": "Master common design patterns: Singleton, Observer, Factory, Module, and architectural patterns."
     },
     {
       "title": "Browser APIs",
       "name": "APIs",
-      "page_html": "./browser-apis/index.html",
+      "page_html": "./js/browser-apis/index.html",
       "summary": "Explore Geolocation, Canvas, WebRTC, Service Workers, and other powerful browser APIs."
     },
     {
       "title": "Animation & Graphics",
       "name": "Animation",
-      "page_html": "./animation/index.html",
+      "page_html": "./js/animation/index.html",
       "summary": "Learn CSS animations, Canvas drawing, SVG manipulation, and creating interactive graphics."
     }
   ],
@@ -155,151 +155,151 @@
     {
       "title": "React Core Concepts",
       "name": "React Core",
-      "page_html": "./react-core/index.html",
+      "page_html": "./react/react-core/index.html",
       "summary": "Master the fundamental concepts of React including components, JSX, props, and basic React patterns."
     },
     {
       "title": "React Components",
       "name": "Components",
-      "page_html": "./react-components/index.html",
+      "page_html": "./react/react-components/index.html",
       "summary": "Learn component creation, functional vs class components, and component composition techniques."
     },
     {
       "title": "React Hooks",
       "name": "Hooks",
-      "page_html": "./react-hooks/index.html",
+      "page_html": "./react/react-hooks/index.html",
       "summary": "Understand useState, useEffect, useContext, and custom hooks for modern React development."
     },
     {
       "title": "React State Management",
       "name": "State",
-      "page_html": "./react-state/index.html",
+      "page_html": "./react/react-state/index.html",
       "summary": "Master state management patterns, lifting state up, and advanced state handling techniques."
     },
     {
       "title": "React Event Handling",
       "name": "Events",
-      "page_html": "./react-events/index.html",
+      "page_html": "./react/react-events/index.html",
       "summary": "Learn React event system, event handlers, synthetic events, and form handling in React."
     },
     {
       "title": "React Router",
       "name": "Router",
-      "page_html": "./react-router/index.html",
+      "page_html": "./react/react-router/index.html",
       "summary": "Master client-side routing, navigation, route parameters, and nested routing in React applications."
     },
     {
       "title": "React Forms",
       "name": "Forms",
-      "page_html": "./react-forms/index.html",
+      "page_html": "./react/react-forms/index.html",
       "summary": "Learn controlled components, form validation, and advanced form handling patterns in React."
     },
     {
       "title": "React Context API",
       "name": "Context",
-      "page_html": "./react-context/index.html",
+      "page_html": "./react/react-context/index.html",
       "summary": "Master React Context for state management, avoiding prop drilling, and creating provider patterns."
     },
     {
       "title": "React Performance",
       "name": "Performance",
-      "page_html": "./react-performance/index.html",
+      "page_html": "./react/react-performance/index.html",
       "summary": "Learn React.memo, useMemo, useCallback, and optimization techniques for React applications."
     },
     {
       "title": "React Testing",
       "name": "Testing",
-      "page_html": "./react-testing/index.html",
+      "page_html": "./react/react-testing/index.html",
       "summary": "Master unit testing, integration testing, and testing React components with Jest and React Testing Library."
     },
     {
       "title": "React API Integration",
       "name": "API",
-      "page_html": "./react-api/index.html",
+      "page_html": "./react/react-api/index.html",
       "summary": "Learn to integrate REST APIs, handle async operations, and manage API state in React applications."
     },
     {
       "title": "React Styling",
       "name": "Styling",
-      "page_html": "./react-styling/index.html",
+      "page_html": "./react/react-styling/index.html",
       "summary": "Explore CSS modules, styled-components, CSS-in-JS, and modern styling approaches in React."
     },
     {
       "title": "React Redux",
       "name": "Redux",
-      "page_html": "./react-redux/index.html",
+      "page_html": "./react/react-redux/index.html",
       "summary": "Master Redux for state management, actions, reducers, and connecting React components to Redux store."
     },
     {
       "title": "React Error Handling",
       "name": "Error Handling",
-      "page_html": "./react-error-handling/index.html",
+      "page_html": "./react/react-error-handling/index.html",
       "summary": "Learn error boundaries, error handling patterns, and building robust React applications."
     },
     {
       "title": "React Patterns",
       "name": "Patterns",
-      "page_html": "./react-patterns/index.html",
+      "page_html": "./react/react-patterns/index.html",
       "summary": "Master common React patterns: HOCs, render props, compound components, and advanced patterns."
     },
     {
       "title": "React Lifecycle",
       "name": "Lifecycle",
-      "page_html": "./react-lifecycle/index.html",
+      "page_html": "./react/react-lifecycle/index.html",
       "summary": "Understand component lifecycle methods, useEffect patterns, and lifecycle management in React."
     },
     {
       "title": "React Custom Hooks",
       "name": "Custom Hooks",
-      "page_html": "./react-custom-hooks/index.html",
+      "page_html": "./react/react-custom-hooks/index.html",
       "summary": "Learn to create reusable custom hooks, hook patterns, and advanced hook composition techniques."
     },
     {
       "title": "React Portals",
       "name": "Portals",
-      "page_html": "./react-portals/index.html",
+      "page_html": "./react/react-portals/index.html",
       "summary": "Master React portals for rendering components outside the component tree, modals, and tooltips."
     },
     {
       "title": "React Refs",
       "name": "Refs",
-      "page_html": "./react-refs/index.html",
+      "page_html": "./react/react-refs/index.html",
       "summary": "Learn useRef, createRef, forwarding refs, and direct DOM manipulation in React applications."
     },
     {
       "title": "React Suspense",
       "name": "Suspense",
-      "page_html": "./react-suspense/index.html",
+      "page_html": "./react/react-suspense/index.html",
       "summary": "Understand React Suspense, lazy loading components, and handling loading states in React."
     },
     {
       "title": "React Server Components",
       "name": "Server Components",
-      "page_html": "./react-server-components/index.html",
+      "page_html": "./react/react-server-components/index.html",
       "summary": "Master React Server Components, server-side rendering, and modern React architecture patterns."
     },
     {
       "title": "React Animation",
       "name": "Animation",
-      "page_html": "./react-animation/index.html",
+      "page_html": "./react/react-animation/index.html",
       "summary": "Learn animation libraries, transitions, and creating smooth animations in React applications."
     },
     {
       "title": "React Accessibility",
       "name": "Accessibility",
-      "page_html": "./react-accessibility/index.html",
+      "page_html": "./react/react-accessibility/index.html",
       "summary": "Master accessibility patterns, ARIA attributes, and building inclusive React applications."
     },
     {
       "title": "React DevTools",
       "name": "DevTools",
-      "page_html": "./react-devtools/index.html",
+      "page_html": "./react/react-devtools/index.html",
       "summary": "Learn React DevTools, debugging techniques, and performance profiling for React applications."
     },
     {
       "title": "React Deployment",
       "name": "Deployment",
-      "page_html": "./react-deployment/index.html",
+      "page_html": "./react/react-deployment/index.html",
       "summary": "Master build processes, optimization, and deploying React applications to various platforms."
     }
   ],
