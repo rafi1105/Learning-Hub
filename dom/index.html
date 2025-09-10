@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Promises - Interactive Guide</title>
+  <!-- Marked.js (Markdown Parser) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Highlight.js (Code Syntax Highlighting) with both themes -->
+  <link id="highlight-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      /* Dark theme colors */
+      --primary-bg: #1a1d29;
+      --secondary-bg: #252836;
+      --card-bg: #2d3142;
+      --accent-bg: #343851;
+      --text-primary: #ffffff;
+      --text-secondary: #f8f7eb;
+      --text-muted: #64748b;
+      --accent-color: #FFD43B;
+      --accent-hover: #00b894;
+      --border-color: #3d4663;
+      --success-color: #10b981;
+      --warning-color: #FFD43B;
+      --danger-color: #ef4444;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      --glow: 0 0 20px rgba(221, 183, 12, 0.3);
+    }
+
+    /* Light theme colors */
+    .light-theme {
+      --primary-bg: #f8fafc;
+      --secondary-bg: #ffffff;
+      --card-bg: #ffffff;
+      --accent-bg: #f1f5f9;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --accent-color: #0ea5e9;
+      --accent-hover: #0284c7;
+      --border-color: #e2e8f0;
+      --success-color: #059669;
+      --warning-color: #0284c7;
+      --danger-color: #dc2626;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --glow: 0 0 20px rgba(14, 165, 233, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--primary-bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      transition: all 0.3s ease;
+    }
+
+    /* Floating Header */
+    .floating-header {
+      position: fixed;
+      top: 15px;
+      right: 11%;
+      transform: translateX(50%);
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      padding: 12px 25px;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #FFD43B;
+    }
+
+    .light-theme .logo {
+      color: var(--accent-color);
+    }
+
+    .theme-switcher {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-bg);
+      border-radius: 25px;
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-option {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .theme-option.active {
+      background: var(--accent-color);
+      color: rgb(0, 0, 0);
+      box-shadow: var(--glow);
+    }
+
+    /* Main Layout */
+    .container {
+      /* max-width: 1400px; */
+      margin: 0 auto;
+      padding: 100px 20px 40px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+    }
+
+    /* Sidebar Navigation */
+    .nav-sidebar {
+      position: sticky;
+      top: 100px;
+      height: calc(100vh - 140px);
+      overflow-y: auto;
+      overflow-x: hidden;
+   
+    }
+
+    /* Custom Scrollbar */
+    .nav-sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .nav-sidebar::-webkit-scrollbar-track {
+      background: var(--accent-bg);
+      border-radius: 3px;
+    }
+
+    .nav-sidebar::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+
+    .nav-sidebar::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-hover);
+      opacity: 1;
+    }
+
+    .nav-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 15px 0px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 10px;
+      color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      
+      flex-shrink: 0;
+    }
+
+    .nav-list {
+      list-style: none;
+      flex: 1;
+      overflow-y: auto;
+      margin: 12px;
+      padding-right: 1px;
+    }
+
+    /* Scrollable navigation list */
+    .nav-list::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .nav-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .nav-list::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 2px;
+    }
+
+    .nav-list::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-color);
+    }
+
+    .nav-item {
+      margin: 8px 0px;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      background: var(--accent-bg);
+      color: var(--accent-color);
+      transform: translateX(4px);
+    }
+
+    .nav-link.active {
+      background: var(--accent-color);
+      color: rgb(12, 12, 12);
+      box-shadow: var(--glow);
+    }
+
+    .nav-link.active::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 20px;
+      background: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    /* Main Content */
+    .main-content {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+      
+    }
+
+    /* Typography */
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: var(--warning-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 2rem  .5rem ;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      transform: translateY(10%);
+      height: 3px;
+      background: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 2rem 0 1rem 0;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+
+    /* Interactive Code Blocks */
+    .code-container {
+      position: relative;
+      margin: 2rem 0;
+      width: 70%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+    }
+
+    .code-header {
+      background: var(--accent-bg);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .code-title {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .code-actions {
+      display: flex;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .code-btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .run-btn {
+      background: var(--success-color);
+      color: white;
+    }
+
+    .run-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    }
+
+    .copy-btn {
+      background: var(--accent-bg);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-color);
+      color: white;
+    }
+
+    pre {
+      margin: 0;
+      padding: 24px;
+      background: var(--primary-bg) !important;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      
+    }
+
+    code {
+      background: var(--accent-bg);
+      padding: 3px 6px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .85em;
+      color: var(--accent-color);
+    }
+
+    /* Output Area */
+    .output-container {
+      background: var(--primary-bg);
+      border-top: 1px solid var(--border-color);
+      padding: 16px 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      min-height: 40px;
+      display: none;
+    }
+
+    .output-container.show {
+      display: block;
+    }
+
+    .output-container pre {
+      padding: 0;
+      background: none !important;
+      margin: 0;
+    }
+
+    /* Lists */
+    ul, ol {
+      margin: 1.5rem 2rem;
+      
+    }
+
+    li {
+      margin-bottom: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Links */
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Progress Indicator */
+    .progress-ring {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      z-index: 1000;
+    }
+
+    .progress-ring__circle {
+      transition: 0.35s stroke-dasharray;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+
+    .progress-ring__background {
+      fill: none;
+      stroke: var(--border-color);
+      stroke-width: 3;
+    }
+
+    .progress-ring__progress {
+      fill: none;
+      stroke: var(--accent-color);
+      stroke-width: 3;
+      stroke-linecap: round;
+    }
+
+    .scroll-to-top {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--card-bg);
+      border: 2px solid var(--accent-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--accent-color);
+    }
+
+    .scroll-to-top:hover {
+      background: var(--accent-color);
+      color: white;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    /* Loading State */
+    .loading-state {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 400px;
+      gap: 20px;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--border-color);
+      border-top: 3px solid var(--accent-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    /* Navigation Loading State */
+    .nav-loading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      justify-content: center;
+    }
+
+    .nav-loading i {
+      font-size: 0.8rem;
+    }
+
+    /* Navigation Number Styling */
+    .nav-number {
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-right: 2px;
+    }
+
+    .nav-link.active .nav-number {
+      color: inherit;
+    }
+
+    /* Scroll hints for navigation */
+    .nav-scroll-hint {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .nav-card:hover .nav-scroll-hint {
+      opacity: 1;
+    }
+
+    /* Smooth scrolling for navigation */
+    .nav-list {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+    }
+
+    /* Navigation fade effects */
+    .nav-list::before,
+    .nav-list::after {
+      content: '';
+      position: sticky;
+      display: block;
+      height: 20px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .nav-list::before {
+      top: 0;
+      background: linear-gradient(to bottom, var(--card-bg) 0%, transparent 100%);
+      margin-bottom: -20px;
+    }
+
+    .nav-list::after {
+      bottom: 0;
+      background: linear-gradient(to top, var(--card-bg) 0%, transparent 100%);
+      margin-top: -20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 100px 16px 40px;
+      }
+
+      .nav-sidebar {
+        position: static;
+        order: 2;
+      }
+
+      .floating-header {
+        position: relative;
+        top: 0;
+        left: 0;
+      
+        transform: none;
+        margin-bottom: 20px;
+        border-radius: 16px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .main-content {
+        padding: 24px;
+      }
+    }
+/* Hamburger Menu Styles */
+.nav-toggle {
+  display: none; /* Hidden by default on larger screens */
+  background: var(--accent-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-primary);
+  transition: background 0.3s ease;
+}
+
+.nav-toggle:hover {
+  background: var(--accent-color);
+  color: rgb(0, 0, 0);
+}
+
+.nav-toggle i {
+  margin-right: 8px;
+}
+
+.nav-sidebar {
+  transition: transform 0.3s ease; /* Smooth slide-in/out for mobile menu */
+}
+
+/* Mobile-Specific Styles */
+@media (max-width: 640px) {
+  .floating-header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px;
+    align-items: center;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .container {
+    padding: 16px 8px;
+    transition: padding 0.3s ease;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    line-height: 1.3;
+  }
+
+  .main-content {
+    padding: 16px;
+    transition: padding 0.3s ease;
+  }
+
+  .progress-ring {
+    bottom: 16px;
+    right: 16px;
+    width: 58px;
+    height: 58px;
+    transform: scale(1);
+    transition: all 0.3s ease;
+  }
+
+  .scroll-to-top {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .theme-option {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .code-btn {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  /* Improved Code Snippet Styles */
+  .code-container {
+    overflow-x: auto; /* Enable horizontal scrolling for code blocks */
+    width: 100%; /* Prevent overflow beyond container */
+    /* margin: 1.5rem 0; */
+    border-radius: 12px; /* Softer corners for mobile */
+  }
+
+  pre {
+    font-size: 0.95rem; /* Slightly smaller for mobile readability */
+    padding: 16px; /* Reduced padding for compactness */
+    line-height: 1.5; /* Improved line spacing */
+    white-space: pre-wrap; /* Allow wrapping for long lines */
+    word-break: break-word; /* Break long words to prevent overflow */
+    background: var(--primary-bg) !important;
+    overflow-x: auto; /* Ensure scrollable if needed */
+  }
+
+  code {
+    font-size: 0.95rem;
+    padding: 2px 4px; /* Adjusted inline code padding */
+  }
+
+  .code-header {
+    padding: 10px 16px; /* Reduced padding for mobile */
+  }
+
+  .code-title {
+    font-size: 1rem; /* Smaller title for mobile */
+  }
+
+  .output-container {
+    font-size: 0.9rem;
+    padding: 12px 16px; /* Adjusted for mobile */
+  }
+
+  /* Hamburger Menu Implementation */
+  .nav-toggle {
+    display: block; /* Show hamburger button on mobile */
+    position: fixed;
+    top: 80px; /* Position below header */
+    left: 12px;
+    z-index: 1100;
+  }
+
+  .nav-sidebar {
+    position: fixed;
+    top: 100px; /* Below header and toggle button */
+    left: 0;
+    width: 260px; /* Slightly narrower for mobile */
+    height: calc(100vh - 120px); /* Full height minus header */
+    transform: translateX(-100%); /* Hidden by default */
+    background: var(--card-bg);
+    border-right: 1px solid var(--border-color);
+    z-index: 1000;
+    overflow-y: auto; /* Scrollable if content overflows */
+    overflow-x: hidden;
+  }
+
+  /* Mobile scrollbar styling */
+  .nav-sidebar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .nav-sidebar::-webkit-scrollbar-track {
+    background: var(--accent-bg);
+  }
+
+  .nav-sidebar::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 2px;
+  }
+
+  /* Enhanced mobile scrolling */
+  .nav-sidebar {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-list {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-sidebar.open {
+    transform: translateX(0); /* Slide in when open */
+  }
+
+  .nav-card {
+    padding: 12px; /* Reduced padding for mobile */
+    border-radius: 0; /* Remove radius for full-width menu */
+    border: none; /* Cleaner look */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-list {
+    padding: 0;
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 5px;
+  }
+
+  .nav-link {
+    font-size: 0.85rem; /* Smaller for mobile */
+    padding: 10px 12px;
+  }
+
+  /* Overlay for menu */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 900;
+  }
+
+  .nav-overlay.show {
+    display: block;
+  }
+
+  /* Very Small Screens */
+  @media (max-width: 400px) {
+    .container {
+      padding: 12px 6px;
+    }
+
+    .main-content {
+      padding: 12px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    .nav-sidebar {
+      width: 220px; /* Narrower for tiny screens */
+    }
+  }
+}
+  
+  </style>
+</head>
+<body>
+  <!-- Floating Header -->
+  <header class="floating-header">
+    <div class="logo">
+      <i class="fa-brands fa-js fa-lg" style="color: var(--accent-color);"></i>
+      JS  Guide
+    </div>
+    <div class="theme-switcher" id="themeSwitcher">
+      <div class="theme-option active" data-theme="dark">
+        <i class="fas fa-moon"></i> Dark
+      </div>
+      <div class="theme-option" data-theme="light">
+        <i class="fas fa-sun"></i> Light
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Sidebar Navigation -->
+    <nav class="nav-sidebar">
+      <div class="nav-card">
+        <div class="nav-title">
+          <i class="fas fa-bookmark"></i>
+          Table of Contents
+        </div>
+        <ul class="nav-list" id="navList">
+          <!-- Navigation will be dynamically generated from promise.md -->
+          <li class="nav-item">
+            <div class="nav-loading">
+              <i class="fas fa-spinner fa-spin"></i>
+              <span>Loading navigation...</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div id="content" class="loading-state">
+        <div class="loading-spinner"></div>
+        <h3>Loading Interactive Guide...</h3>
+        <p>Preparing your JavaScript Promises learning experience</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Progress Ring with Scroll to Top -->
+  <div class="progress-ring" id="progressRing">
+    <svg width="60" height="60">
+      <circle class="progress-ring__background" cx="30" cy="30" r="26"/>
+      <circle class="progress-ring__progress" cx="30" cy="30" r="26" 
+              stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
+    </svg>
+    <div class="scroll-to-top" id="scrollToTop">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+  </div>
+
+  <script>
+    // Global Variables
+    let currentTheme = localStorage.getItem('theme') || 'dark';
+    
+    // Initialize Theme
+    function initTheme() {
+      document.body.className = currentTheme === 'light' ? 'light-theme' : '';
+      
+      // Update highlight.js theme
+      const themeLink = document.getElementById('highlight-theme');
+      themeLink.href = currentTheme === 'light' 
+        ? 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css'
+        : 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css';
+      
+      // Update theme switcher
+      document.querySelectorAll('.theme-option').forEach(option => {
+        option.classList.toggle('active', option.dataset.theme === currentTheme);
+      });
+    }
+
+    // Theme Switcher
+    document.getElementById('themeSwitcher').addEventListener('click', (e) => {
+      if (e.target.closest('.theme-option')) {
+        const newTheme = e.target.closest('.theme-option').dataset.theme;
+        if (newTheme !== currentTheme) {
+          currentTheme = newTheme;
+          localStorage.setItem('theme', currentTheme);
+          initTheme();
+          
+          // Re-highlight code blocks with new theme
+          setTimeout(() => {
+            document.querySelectorAll('pre code').forEach(block => {
+              hljs.highlightElement(block);
+            });
+          }, 100);
+        }
+      }
+    });
+
+    // Progress Ring
+    function updateProgress() {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollTop / docHeight;
+      
+      const circle = document.querySelector('.progress-ring__progress');
+      const circumference = 2 * Math.PI * 26;
+      const strokeDashoffset = circumference - (scrollPercent * circumference);
+      circle.style.strokeDashoffset = strokeDashoffset;
+    }
+
+    // Scroll to Top
+    document.getElementById('scrollToTop').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Navigation Active State
+    function updateActiveNav() {
+      const sections = document.querySelectorAll('h1[id], h2[id], h3[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      let currentSection = '';
+      
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 150) {
+          currentSection = section.id;
+        }
+      });
+
+      navLinks.forEach(link => {
+        const isActive = link.getAttribute('data-section') === currentSection;
+        link.classList.toggle('active', isActive);
+        
+        // Auto-scroll active navigation item into view
+        if (isActive) {
+          scrollNavItemIntoView(link);
+        }
+      });
+    }
+
+    // Scroll active navigation item into view
+    function scrollNavItemIntoView(activeLink) {
+      const navList = document.querySelector('.nav-list');
+      const linkRect = activeLink.getBoundingClientRect();
+      const navRect = navList.getBoundingClientRect();
+      
+      // Check if the active link is outside the visible area
+      if (linkRect.top < navRect.top || linkRect.bottom > navRect.bottom) {
+        activeLink.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+    }
+
+    // Add scroll indicators
+    function updateScrollIndicators() {
+      const navList = document.querySelector('.nav-list');
+      const navCard = document.querySelector('.nav-card');
+      
+      if (!navList || !navCard) return;
+      
+      const canScroll = navList.scrollHeight > navList.clientHeight;
+      
+      // Add or remove scroll hint
+      let scrollHint = navCard.querySelector('.nav-scroll-hint');
+      if (canScroll && !scrollHint) {
+        scrollHint = document.createElement('div');
+        scrollHint.className = 'nav-scroll-hint';
+        scrollHint.innerHTML = '<i class="fas fa-arrows-alt-v"></i>';
+        navCard.style.position = 'relative';
+        navCard.appendChild(scrollHint);
+      } else if (!canScroll && scrollHint) {
+        scrollHint.remove();
+      }
+    }
+
+    // Smooth Navigation
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.nav-link')) {
+        e.preventDefault();
+        const targetId = e.target.closest('.nav-link').getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 120;
+          window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+        }
+      }
+    });
+
+    // Code Execution Function
+    function executeCode(code) {
+      try {
+        // Create a safe execution context
+        const originalConsole = console.log;
+        const outputs = [];
+        
+        // Override console.log to capture output
+        console.log = (...args) => {
+          outputs.push(args.map(arg => 
+            typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+          ).join(' '));
+        };
+        
+        // Execute the code
+        const result = new Function(code)();
+        
+        // Restore console.log
+        console.log = originalConsole;
+        
+        // Handle promises
+        if (result && typeof result.then === 'function') {
+          return result.then(res => {
+            outputs.push(`Promise resolved: ${JSON.stringify(res, null, 2)}`);
+            return outputs.join('\n');
+          }).catch(err => {
+            outputs.push(`Promise rejected: ${err.message}`);
+            return outputs.join('\n');
+          });
+        }
+        
+        if (result !== undefined) {
+          outputs.push(`Return value: ${JSON.stringify(result, null, 2)}`);
+        }
+        
+        return Promise.resolve(outputs.join('\n') || 'Code executed successfully (no output)');
+        
+      } catch (error) {
+        return Promise.resolve(`Error: ${error.message}`);
+      }
+    }
+
+    // Create Interactive Code Block
+    function createInteractiveCodeBlock(preElement) {
+      const code = preElement.querySelector('code');
+      if (!code || !code.textContent.trim()) return;
+      
+      const codeText = code.textContent.trim();
+      
+      // Create container
+      const container = document.createElement('div');
+      container.className = 'code-container';
+      
+      // Create header
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      header.innerHTML = `
+        <div class="code-title">Interactive JavaScript</div>
+        <div class="code-actions">
+          <button class="code-btn copy-btn">
+            <i class="fas fa-copy"></i> Copy
+          </button>
+          <button class="code-btn run-btn">
+            <i class="fas fa-play"></i> Run
+          </button>
+        </div>
+      `;
+      
+      // Create output container
+      const outputContainer = document.createElement('div');
+      outputContainer.className = 'output-container';
+      outputContainer.innerHTML = '<pre>Click "Run" to execute this code</pre>';
+      
+      // Wrap existing pre element
+      preElement.parentNode.insertBefore(container, preElement);
+      container.appendChild(header);
+      container.appendChild(preElement);
+      container.appendChild(outputContainer);
+      
+      // Add event listeners
+      const copyBtn = header.querySelector('.copy-btn');
+      const runBtn = header.querySelector('.run-btn');
+      
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(codeText).then(() => {
+          copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(() => {
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+      
+      runBtn.addEventListener('click', async () => {
+        outputContainer.classList.add('show');
+        runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running...';
+        
+        try {
+          const output = await executeCode(codeText);
+          outputContainer.innerHTML = `<pre>${output}</pre>`;
+        } catch (error) {
+          outputContainer.innerHTML = `<pre>Error: ${error.message}</pre>`;
+        }
+        
+        runBtn.innerHTML = '<i class="fas fa-play"></i> Run';
+      });
+    }
+
+    // Extract Table of Contents from Markdown
+    function extractTableOfContents(markdownText) {
+      const tocRegex = /## 📖 Table of Contents\s*\n((?:\d+\.\s*\[.*?\]\(.*?\)\s*\n?)+)/;
+      const match = markdownText.match(tocRegex);
+      
+      if (!match) return [];
+      
+      const tocContent = match[1];
+      const linkRegex = /\d+\.\s*\[(.*?)\]\((.*?)\)/g;
+      const tocItems = [];
+      let linkMatch;
+      
+      while ((linkMatch = linkRegex.exec(tocContent)) !== null) {
+        const title = linkMatch[1];
+        const anchor = linkMatch[2].replace('#', '');
+        tocItems.push({
+          title: title,
+          anchor: anchor,
+          id: anchor
+        });
+      }
+      
+      return tocItems;
+    }
+
+    // Generate Dynamic Navigation
+    function generateNavigation(tocItems) {
+      const navList = document.getElementById('navList');
+      
+      if (tocItems.length === 0) {
+        navList.innerHTML = `
+          <li class="nav-item">
+            <div class="nav-loading">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>No table of contents found</span>
+            </div>
+          </li>
+        `;
+        return;
+      }
+      
+      navList.innerHTML = tocItems.map((item, index) => `
+        <li class="nav-item">
+          <a href="#${item.anchor}" class="nav-link" data-section="${item.id}">
+            <span class="nav-number">${index + 1}.</span>
+            ${item.title}
+          </a>
+        </li>
+      `).join('');
+    }
+
+    // Load and Parse Markdown
+    async function loadMarkdown() {
+      try {
+        const response = await fetch("README.md");
+        if (!response.ok) throw new Error('Failed to fetch markdown file');
+        
+        const text = await response.text();
+        
+        // Extract and generate navigation from table of contents
+        const tocItems = extractTableOfContents(text);
+        generateNavigation(tocItems);
+        
+        // Parse markdown
+        const html = marked.parse(text, {
+          highlight: function(code, lang) {
+            if (lang && hljs.getLanguage(lang)) {
+              return hljs.highlight(code, { language: lang }).value;
+            }
+            return hljs.highlightAuto(code).value;
+          },
+          breaks: true,
+          gfm: true
+        });
+        
+        // Update content
+        document.getElementById("content").innerHTML = html;
+        
+        // Add IDs to headings for navigation
+        document.querySelectorAll('h1, h2, h3').forEach(heading => {
+          if (!heading.id) {
+            // Create ID from heading text
+            let id = heading.textContent
+              .toLowerCase()
+              .replace(/[^\w\s-]/g, '')
+              .replace(/\s+/g, '-')
+              .trim();
+            
+            // Remove common prefixes like numbers
+            id = id.replace(/^\d+[\.\-\s]*/, '');
+            
+            heading.id = id;
+          }
+        });
+        
+        // Verify navigation links match headings
+        tocItems.forEach(item => {
+          const heading = document.getElementById(item.anchor);
+          if (!heading) {
+            // Try to find heading by text content
+            const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            for (const h of headings) {
+              const headingText = h.textContent.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+              const itemText = item.title.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+              
+              if (headingText.includes(itemText) || itemText.includes(headingText)) {
+                h.id = item.anchor;
+                break;
+              }
+            }
+          }
+        });
+        
+        // Make code blocks interactive
+        document.querySelectorAll('pre').forEach(pre => {
+          const code = pre.querySelector('code');
+          if (code && code.classList.contains('language-javascript')) {
+            createInteractiveCodeBlock(pre);
+          }
+        });
+        
+        // Re-highlight all code blocks
+        document.querySelectorAll('pre code').forEach(block => {
+          hljs.highlightElement(block);
+        });
+        
+        // Setup scroll listeners
+        window.addEventListener('scroll', () => {
+          updateProgress();
+          updateActiveNav();
+        });
+        
+        // Setup navigation scroll indicators
+        updateScrollIndicators();
+        
+        // Update scroll indicators on window resize
+        window.addEventListener('resize', updateScrollIndicators);
+        
+        updateActiveNav();
+        
+      } catch (error) {
+        document.getElementById("content").innerHTML = `
+          <div style="text-align: center; padding: 3rem;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--danger-color); margin-bottom: 2rem;"></i>
+            <h2>Failed to Load Content</h2>
+            <p style="margin-bottom: 1rem;">Could not load the readme.md file.</p>
+            <p style="color: var(--text-muted);">Error: ${error.message}</p>
+            <p style="color: var(--text-muted);">Make sure the file exists in the same directory.</p>
+          </div>
+        `;
+        
+        // Show error in navigation too
+        document.getElementById('navList').innerHTML = `
+          <li class="nav-item">
+            <div class="nav-loading">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>Failed to load navigation</span>
+            </div>
+          </li>
+        `;
+      }
+    }
+
+    // Initialize Everything
+    initTheme();
+    loadMarkdown();
+  </script>
+</body>
+</html>

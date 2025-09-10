@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Learning Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fab fa-js-square"></i>
+                <span>JS Learning Hub</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#modules" class="nav-link">Modules</a>
+                <a href="#paths" class="nav-link">Learning Paths</a>
+                <a href="#projects" class="nav-link">Projects</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Master  Programming With Learning Hub</h1>
+                <p>Comprehensive tutorials, hands-on projects, and structured learning paths</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="totalModules">25</span>
+                        <span class="stat-label">Modules</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="totalHours">150</span>
+                        <span class="stat-label">Hours</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Paths</span>
+                    </div>
+                </div>
+                <button class="cta-button" onclick="scrollToSection('modules')">
+                    Start Learning <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="modules-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="modulesTitle">JavaScript Modules</h2>
+                <p id="modulesDescription">Choose from our comprehensive collection of JavaScript topics</p>
+            </div>
+            
+            <!-- Technology Selector -->
+            <div class="tech-selector">
+                <button class="tech-btn active" data-tech="javascript">
+                    <i class="fab fa-js-square"></i>
+                    JavaScript
+                </button>
+                <button class="tech-btn" data-tech="react">
+                    <i class="fab fa-react"></i>
+                    React
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search modules..." />
+                    <button class="clear-search" id="clearSearch" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Filter Controls -->
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">All Modules</button>
+                <button class="filter-btn" data-filter="beginner">Beginner</button>
+                <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                <button class="filter-btn" data-filter="advanced">Advanced</button>
+            </div>
+
+            <!-- Modules Grid -->
+            <div class="modules-grid" id="modulesGrid">
+                <!-- Modules will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Paths Section -->
+    <section id="paths" class="paths-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Structured Learning Paths</h2>
+                <p>Follow our curated learning paths for systematic skill development</p>
+            </div>
+            <div class="paths-grid" id="pathsGrid">
+                <!-- Learning paths will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Practice Projects</h2>
+                <p>Apply your knowledge with real-world project examples</p>
+            </div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Learning Cart</h3>
+                <button class="close-cart" id="closeCart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-body" id="cartBody">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your learning cart is empty</p>
+                    <p class="empty-cart-subtitle">Add modules to start your learning journey!</p>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        <span>Total Modules: <strong id="cartTotalModules">0</strong></span>
+                        <span>Estimated Time: <strong id="cartTotalHours">0 hours</strong></span>
+                    </div>
+                    <button class="checkout-btn" id="checkoutBtn" disabled>
+                        Start Learning Journey <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Module Detail Modal -->
+    <div class="module-modal" id="moduleModal">
+        <div class="module-content">
+            <div class="module-header">
+                <button class="close-module" id="closeModule">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="module-body" id="moduleBody">
+                <!-- Module details will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>JS Learning Hub</h4>
+                    <p>Your comprehensive resource for mastering JavaScript programming</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#modules">Modules</a>
+                    <a href="#paths">Learning Paths</a>
+                    <a href="#projects">Projects</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">Community</a>
+                    <a href="#">Help Center</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 JS Learning Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
