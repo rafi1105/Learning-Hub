@@ -45,13 +45,23 @@ function Welcome() {
 
 **Example: Class Component**
 ```jsx
-import React from 'react';
+import React from 'react'
 
 class Welcome extends React.Component {
   render() {
     return <h1>Hello, React!</h1>;
   }
 }
+
+const App = () => {
+  return (
+    <>
+      <Welcome />
+    </>
+  )
+}
+
+export default App
 ```
 
 ### Real Example: User Card
@@ -64,6 +74,14 @@ function UserCard({ user }) {
     </div>
   );
 }
+const App = () => {
+  return (
+    <>
+      <UserCard user={{ name: 'John Doe', email: 'john@example.com' }} />
+    </>
+  )
+}
+export default App
 ```
 
 ---
